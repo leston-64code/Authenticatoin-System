@@ -14,9 +14,9 @@ const userSchema=new mongoose.Schema({
             /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/ ,"Please provide a valid email"
         ]
     },
-    passowrd:{
+    password:{
         type:String,
-        required:[true,"Please add a  passwrod"],
+        required:[true,"Please add a  password"],
         minlength:6,
         select:false
     },
@@ -30,7 +30,7 @@ userSchema.pre("save",async function(next){
     }
 
     const salt =await bcrypt.genSalt(10)
-    this.passowrd=await bcrypt.hash(this.passowrd,salt)
+    this.password=await bcrypt.hash(this.password,salt)
     next()
 })
 

@@ -1,7 +1,7 @@
 const User=require("../models/User")
 
 exports.register=async (req,res,next)=>{
-    const {username,email,password}=req.body
+    const {username,email,password}= await req.body
     try {
         const user=await User.create({
             username,email,password
