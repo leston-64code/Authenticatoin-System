@@ -1,71 +1,56 @@
-const User=require("../models/User")
+const User = require("../models/User");
+const ErrorResponse = require("../utils/errorResponse");
 
-exports.register=async (req,res,next)=>{
-    const {username,email,password}= await req.body
+exports.register = async (req, res, next) => {
+    const { username, email, password } = await req.body;
     try {
-        const user=await User.create({
-            username,email,password
-        })
-        res.status(201).json(
-            {
-                success:true,
-                user:user
-            }
-        )
+        const user = await User.create({
+            username,
+            email,
+            password,
+        });
+        res.status(201).json({
+            success: true,
+            user: user,
+        });
     } catch (error) {
-        res.status(500).json({
-            success:false,
-            error:error.message
-        })
+        // console.log(error);
+        next(error);
     }
-}
+};
 
-exports.login=async (req,res,next)=>{
-    const {email,password}=req.body
-    // if(!email||password){
-    //     res.status(400).json({
-    //         success:false,
-    //         error:"Please provide email and password"
-    //     })
-    // }
+exports.login = async (req, res, next) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return next(new ErrorResponse("Please provide an email or password", 400));
+    }
     try {
-        const user=await User.findOne({email}).select("+password")
+        const user = await User.findOne({ email }).select("+password");
 
-        if(!user){
-           return res.status(404).json({
-                success:false,
-                error:"Invalid credentilas"
-            })
+        if (!user) {
+            return next(new ErrorResponse("Invalid credentials", 404));
         }
 
-        const isMatch=await user.matchPasswords(password)
+        const isMatch = await user.matchPasswords(password);
 
-        if(!isMatch){
-            return res.status(404).json({
-                success:false,
-                error:"Invalid credentials"
-            })
+        if (!isMatch) {
+            return next(new ErrorResponse("Invalid credentials", 404));
         }
 
-        return  res.status(200).json(
-            {
-                success:true,
-                token:"kajshfflfufhfh"
-            }
-        )
-
+        return res.status(200).json({
+            success: true,
+            token: "kajshfflfufhfh",
+        });
     } catch (error) {
-        return res.status(500).json({
-            success:false,
-            error:error.message
-        })
+        // return next(new ErrorResponse("Server Error", 500));
+        return next(error)
     }
-}
+};
 
-exports.forgotpassword=(req,res,next)=>{
-    res.send("forgotpassword Route is this")
-}
+exports.forgotpassword = (req, res, next) => {
+    res.send("forgotpassword Route is this");
+};
 
-exports.resetpassword=(req,res,next)=>{
-    res.send(" resetpassword Route is this")
-}
+exports.resetpassword = (req, res, next) => {
+    res.send(" resetpassword Route is this");
+};
