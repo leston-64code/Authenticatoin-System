@@ -9,10 +9,7 @@ exports.register = async (req, res, next) => {
             email,
             password,
         });
-        res.status(201).json({
-            success: true,
-            user: user,
-        });
+        sendToken(user,201,res)
     } catch (error) {
         // console.log(error);
         next(error);
@@ -37,10 +34,7 @@ exports.login = async (req, res, next) => {
             return next(new ErrorResponse("Invalid credentials", 404));
         }
 
-        return res.status(200).json({
-            success: true,
-            token: "kajshfflfufhfh",
-        });
+        sendToken(user,200,res)
     } catch (error) {
         // return next(new ErrorResponse("Server Error", 500));
         return next(error)
@@ -54,3 +48,13 @@ exports.forgotpassword = (req, res, next) => {
 exports.resetpassword = (req, res, next) => {
     res.send(" resetpassword Route is this");
 };
+
+
+
+const sendToken=async (user,statusCode,res)=>{
+    const token=user.getSignedToken()
+    res.status(statusCode).json({
+        success:true,
+        token
+    })
+}
