@@ -41,8 +41,22 @@ exports.login = async (req, res, next) => {
     }
 };
 
-exports.forgotpassword = (req, res, next) => {
-    res.send("forgotpassword Route is this");
+exports.forgotpassword =async (req, res, next) => {
+    const {email}=req.body
+
+    try {
+        const user=await User.findOne({email})
+        if(!user){
+            return next(new ErrorResponse("Email could not be verified",404))
+        }
+        const resetToken=user.getResetPasswordToken()
+
+        await user.save()
+
+        
+    } catch (error) {
+        
+    }
 };
 
 exports.resetpassword = (req, res, next) => {
