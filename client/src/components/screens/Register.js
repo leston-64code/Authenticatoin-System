@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import "./register.css"
 import axios from "axios"
 import { Link } from 'react-router-dom'
@@ -10,7 +10,14 @@ const Register = ({history}) => {
     const [confirmPassword,setConfirmPassword]=useState("")
     const [error,setError]=useState("")
 
-  function registerHandler(e){
+    useEffect(()=>{
+        if(localStorage.getItem("authToken")){
+            history.push("/")
+        }
+    },[history])
+
+
+ async  function registerHandler(e){
     e.preventDefault()
 
     const config={
