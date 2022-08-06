@@ -14,7 +14,7 @@ body{
 .one-c{
     /* border: 1px solid red; */
     width: 60vw;
-    height: 200vh;
+    /* height: 200vh; */
     margin: auto;
 }
 .two-c{
@@ -124,6 +124,12 @@ body{
     border-radius: 7px;
     font-size: 16px;
     border:1px solid white
+}
+
+.linkerman{
+    text-decoration: none;
+    color :red
+    /* color :rgb(30, 137, 137) */
 }
 
 @media (max-width:600px){

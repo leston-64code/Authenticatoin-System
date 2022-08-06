@@ -10,15 +10,15 @@ import PrivateRoute from "./components/routing/PrivateRoute"
 const App = () => {
   return (
    <Router>
-    <Login/>
+    {/* <Login/> */}
     {/* <Register/> */}
      <div className='App'>
      <Routes>
 
     {/* <PrivateRoute path="/" element={<></>}/> */}
 
-     <Route path='/login' element={<></>}> </Route>
-     <Route path='/register' element={<></>}> </Route>
+     <Route path='/login' element={<Login/>}> </Route>
+     <Route path='/register' element={<Register/>}> </Route>
      <Route path='/forgotpassword' element={<></>}> </Route>
      <Route path='/passwordreset/:resetToken' element={<></>}> </Route>
 

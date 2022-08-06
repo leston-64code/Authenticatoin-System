@@ -126,7 +126,7 @@ const Register = ({history}) => {
                     Register
                 </button>
             </div>
-            <span>Already have an account ? <Link to="/login">Login</Link></span>
+            <span style={{color:"white"}}>Already have an account ? <Link className='linkerman'  to="/login">Login</Link></span>
         </div>
     </div>
 </div>

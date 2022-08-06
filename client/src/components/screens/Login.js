@@ -86,7 +86,7 @@ const Login = (history) => {
                     Submit
                 </button>
             </div>
-            <span>Don't have an account <Link to="/register">Register</Link></span>
+            <span style={{color:"white"}}>Don't have an account ?  <Link className='linkerman' to="/register"> Register</Link></span>
         </div>
     </div>
 </div>
