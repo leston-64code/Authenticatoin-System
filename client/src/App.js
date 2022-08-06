@@ -10,8 +10,8 @@ import PrivateRoute from "./components/routing/PrivateRoute"
 const App = () => {
   return (
    <Router>
-    <Login/>
-    {/* <Register/> */}
+    {/* <Login/> */}
+    <Register/>
      <div className='App'>
      <Routes>
 

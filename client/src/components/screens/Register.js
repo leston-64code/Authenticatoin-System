@@ -44,6 +44,17 @@ const Register = () => {
                 </div>
                
             </div>
+            <div className="password">
+                <div className="flexer">
+                    <div className="flexer-one">
+                        <p className="conner">Confirm Password :</p>
+                    </div>
+                    <div className="flexer-two">
+                        <input type="text" className="password-input input-control" placeholder="Enter your password "/>
+                    </div>
+                </div>
+               
+            </div>
             <div className="submit-section">
                 <button className="submit-button">
                     Submit
