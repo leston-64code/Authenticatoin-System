@@ -6,6 +6,7 @@ import Login from "./components/screens/Login"
 import Register from "./components/screens/Register"
 
 import PrivateRoute from "./components/routing/PrivateRoute"
+import Home from './components/screens/Home'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
      <Route path='/register' element={<Register/>}> </Route>
      <Route path='/forgotpassword' element={<></>}> </Route>
      <Route path='/passwordreset/:resetToken' element={<></>}> </Route>
+     <Route path='/' exact={true} element={<Home/>}></Route>
 
      </Routes>
     </div>
