@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./register.css";
-import axios from "axios";
+import "./css/register.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = ({ history }) => {
@@ -9,7 +8,7 @@ const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
@@ -48,7 +47,7 @@ const Register = ({ history }) => {
     //     },5000)
     // }
 
-    await fetch("http://localhost:5000/api/auth/register", {
+    await fetch("/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +62,7 @@ const Register = ({ history }) => {
         return res.json();
       })
       .then((data) => {
-        if (data.success == true) {
+        if (data.success === true) {
           localStorage.setItem("authToken", data.token);
           navigate("/private");
         } else {

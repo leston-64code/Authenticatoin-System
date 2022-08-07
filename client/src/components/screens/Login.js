@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import "./login.css";
+import "./css/login.css";
 // import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
       navigate("/private");
     }
-  }, []);
+  }, [navigate]);
 
   async function loginHandler(e) {
     e.preventDefault();
@@ -36,7 +36,7 @@ const Login = () => {
     //     },5000)
     // }
 
-    await fetch("http://localhost:5000/api/auth/login", {
+    await fetch("/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,10 +51,12 @@ const Login = () => {
       })
       .then((data) => {
         // console.log(data);
-        if (data.success == true) {
+        if (data.success === true) {
           localStorage.setItem("authToken", data.token);
           navigate("/private");
         } else {
+          setError(true)
+          // alert(data.error)
           console.log(data)
           navigate("/login");
         }
@@ -63,11 +65,7 @@ const Login = () => {
         alert("Request sending failed");
       });
   }
-  useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      navigate("/private");
-    }
-  }, []);
+
   return (
     <div className="one-c">
       <div className="two-c">
@@ -124,6 +122,11 @@ const Login = () => {
               Register
             </Link>
           </span>
+          <br /><br />
+          
+          {
+            error?<span style={{"color":"white"}}>Don't remember you password ? <Link style={{"color":"red"}} to="/forgotpassword">Forgot Password</Link></span>:""
+          }
         </div>
       </div>
     </div>

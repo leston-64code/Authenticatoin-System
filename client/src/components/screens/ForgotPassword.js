@@ -1,11 +1,25 @@
-import React, { useState, useEffect } from "react";
-import "./login.css";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState} from "react";
+import "./css/login.css";
+import { Link} from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-    const navigate = useNavigate();
+ 
     async function forgotHandler(){
+       fetch("/api/auth/forgotpassword",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          email
+        })
+       }).then((res)=>{
+         return res.json()
+       }).then((data)=>{
+        console.log(data)
+       
+       })
 
     }
   

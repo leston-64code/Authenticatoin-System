@@ -4,8 +4,6 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 // Routing 
 import Login from "./components/screens/Login"
 import Register from "./components/screens/Register"
-
-import PrivateRoute from "./components/routing/PrivateRoute"
 import Home from './components/screens/Home'
 import ResetPassword from './components/screens/ResetPassword'
 import ForgotPassword from './components/screens/ForgotPassword'

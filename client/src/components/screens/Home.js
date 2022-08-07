@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {Link, Navigate ,useNavigate} from "react-router-dom"
+import {Link ,useNavigate} from "react-router-dom"
 
 const Home = () => {
   let navigate=useNavigate()
@@ -7,7 +7,7 @@ const Home = () => {
     if(localStorage.getItem("authToken")){
       navigate("/private")
     }
-  },[])
+  },[navigate])
   return (
     <div >
       <h1 style={{color:"white"}}>Choose your choice</h1>
