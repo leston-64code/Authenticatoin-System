@@ -14,14 +14,17 @@ const Login = () => {
       <div className="two-c">
         <div className="three-c">
           <div className="title">
-            <p className="title-one"> Login</p>
+            <p className="title-one" style={{"marginTop":"2px"}}> Forgot Password</p>
+            <p style={{"color":"white","fontSize":"18px"}}>Please enter the email you entered when signing up</p>
           </div>
           <div className="email">
             <div className="flexer">
               <div className="flexer-one">
                 <p className="conner">Email :</p>
+              
               </div>
               <div className="flexer-two">
+                
                 <input
                   type="text"
                   className="email-input input-control"
@@ -44,7 +47,7 @@ const Login = () => {
              Already have an account ?{" "}
             <Link className="linkerman" to="/login">
               {" "}
-              Register
+              Login
             </Link>
           </span>
         </div>
