@@ -27,13 +27,13 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
-      return next(new ErrorResponse("Invalid credentials", 404));
+      return next(new ErrorResponse("Invalid credentials hello", 404));
     }
 
     const isMatch = await user.matchPasswords(password);
 
     if (!isMatch) {
-      return next(new ErrorResponse("Invalid credentials", 404));
+      return next(new ErrorResponse("Invalid credentials super", 404));
     }
 
     sendToken(user, 200, res);

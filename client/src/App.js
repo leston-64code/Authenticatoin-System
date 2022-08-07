@@ -7,6 +7,8 @@ import Register from "./components/screens/Register"
 
 import PrivateRoute from "./components/routing/PrivateRoute"
 import Home from './components/screens/Home'
+import ResetPassword from './components/screens/ResetPassword'
+import Private from './components/screens/Private'
 
 const App = () => {
   return (
@@ -16,12 +18,12 @@ const App = () => {
      <div className='App'>
      <Routes>
 
-    {/* <PrivateRoute path="/" element={<></>}/> */}
+    <Route path="/private" element={<Private/>}/>
 
      <Route path='/login' element={<Login/>}> </Route>
      <Route path='/register' element={<Register/>}> </Route>
      <Route path='/forgotpassword' element={<></>}> </Route>
-     <Route path='/passwordreset/:resetToken' element={<></>}> </Route>
+     <Route path='/passwordreset/:resetToken' element={<ResetPassword/>}> </Route>
      <Route path='/' exact={true} element={<Home/>}></Route>
 
      </Routes>
