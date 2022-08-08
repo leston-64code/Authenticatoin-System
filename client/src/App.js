@@ -20,7 +20,7 @@ const App = () => {
      <Route path='/login' element={<Login/>}> </Route>
      <Route path='/register' element={<Register/>}> </Route>
      <Route path='/forgotpassword' element={<ForgotPassword/>}> </Route>
-     <Route path='/passwordreset/:resetToken' element={<ResetPassword/>}> </Route>
+     <Route path='/resetpassword/:resetToken' element={<ResetPassword/>}> </Route>
      <Route path='/' exact={true} element={<Home/>}></Route>
 
      </Routes>

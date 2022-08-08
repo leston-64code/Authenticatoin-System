@@ -1,11 +1,39 @@
 import React, { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const ResetPassword = () => {
     const [password,setPassword]=useState("")
     const [confirmpassword,setConfirmPassword]=useState("")
-
-    function resetpassHandler(){
-
+    const token=useParams()
+    const navigate=useNavigate()
+//   console.log(token)
+    function resetpassHandler(e){
+        e.preventDefault()
+        
+        if(password!==confirmpassword){
+        return console.log("Confirm password and password did not match")
+        }else{
+            // fetch(`/api/auth/passwordreset/${match.params.resetToken}`,{
+            fetch(`/api/auth/resetpassword/${token.resetToken}`,{
+                method:"PUT",
+                headers:{
+                    "Content-Type":"application/json",
+                    'Accept': 'application/json'
+                },
+                body:JSON.stringify({
+                    password
+                })
+            }).then((res)=>{
+                return res.text()
+            }).then((data)=>{
+                console.log(data)
+                if(data.success===true){
+                    navigate("/login")
+                }
+            }).catch((error)=>{
+                console.log(error)
+            })
+        }
     }
   return (
     <div className="one-c">

@@ -53,9 +53,10 @@ exports.forgotpassword = async (req, res, next) => {
     }
 
     const resetToken = user.getResetPasswordToken();
+    
     await user.save();
 
-    const resetURL = `http://localhost:3000/passwordreset/${resetToken}`;
+    const resetURL = `http://localhost:3000/resetpassword/${resetToken}`;
 
     const message = `
         <h1>You have requested a password reset</h1>
@@ -85,6 +86,7 @@ exports.forgotpassword = async (req, res, next) => {
 
 exports.resetpassword =async (req, res, next) => {
   const resetPasswordToken=crypto.createHash("sha256").update(req.params.resetToken).digest("hex")
+  
 
   try {
     const user=await User.findOne({resetPasswordToken,
@@ -104,7 +106,7 @@ exports.resetpassword =async (req, res, next) => {
       data:"Password reset successful"
     })
   } catch (error) {
-    
+    next(error)
   }
 };
 

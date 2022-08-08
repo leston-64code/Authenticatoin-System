@@ -2,6 +2,7 @@ const mongoose=require("mongoose")
 const bcrypt=require("bcryptjs")
 const jwt =require("jsonwebtoken")
 const crypto=require("crypto")
+const { reset } = require("nodemon")
 
 const userSchema=new mongoose.Schema({
     username:{
@@ -22,6 +23,7 @@ const userSchema=new mongoose.Schema({
         minlength:6,
         select:false
     },
+    date: { type: Date, default: Date.now },
     resetPasswordToken:String,
     resetPasswordExpire:Date
 })
@@ -46,7 +48,7 @@ userSchema.methods.getSignedToken= function(){
 
 userSchema.methods.getResetPasswordToken=function (){
     const resetToken=crypto.randomBytes(20).toString("hex")
-
+    
     this.resetPasswordToken=crypto.createHash("sha256").update(resetToken).digest("hex")
 
     this.resetPasswordExpire=Date.now()+ 10*(60*1000)
